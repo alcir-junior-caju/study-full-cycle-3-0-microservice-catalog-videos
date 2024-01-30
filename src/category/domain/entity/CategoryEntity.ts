@@ -58,6 +58,13 @@ export class CategoryEntity extends Entity {
     CategoryEntity.validate(this);
   }
 
+  // TODO: remove after challenge
+  update({ name, description }: CategoryEntityCreateCommand): void {
+    this.name = name;
+    this.description = description;
+    CategoryEntity.validate(this);
+  }
+
   changeDescription(description: string): void {
     this.description = description;
     CategoryEntity.validate(this);

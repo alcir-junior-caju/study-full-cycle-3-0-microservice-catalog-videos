@@ -195,4 +195,21 @@ describe('CategoryEntity Tests', () => {
       ]
     });
   });
+
+  // TODO: remove after challenge
+  it('should be update category', () => {
+    const category = CategoryEntity.create({
+      name: 'Movie',
+      description: 'Movies',
+    });
+    expect(category.name).toBe('Movie');
+    expect(category.description).toBe('Movies');
+    category.update({
+      name: 'Movie 2',
+      description: 'Movies 2',
+    });
+    expect(category.name).toBe('Movie 2');
+    expect(category.description).toBe('Movies 2');
+    expect(validateSpy).toHaveBeenCalledTimes(2);
+  });
 });
