@@ -1,4 +1,5 @@
-import { Entity, ValueObject } from "../domain";
+import { Entity } from "../entity";
+import { ValueObject } from "./ValueObject";
 
 export type SearchResultContructorParams<E extends Entity> = {
   items: E[];

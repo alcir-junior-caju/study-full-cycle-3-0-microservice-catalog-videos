@@ -1,4 +1,4 @@
-import { ValueObject } from "../domain";
+import { ValueObject } from "./ValueObject";
 
 export type SortDirection = "asc" | "desc";
 

@@ -1,4 +1,4 @@
-import { SearchParams } from "../repository/SearchParams";
+import { SearchParams } from "../domain";
 
 describe('SearchParams Tests', () => {
   test.each([

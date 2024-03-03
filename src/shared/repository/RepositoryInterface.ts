@@ -1,6 +1,4 @@
-import { Entity as AbstractEntity, ValueObject } from "../domain";
-import { SearchParams } from "./SearchParams";
-import { SearchResult } from "./SearchResult";
+import { Entity as AbstractEntity, SearchParams, SearchResult, ValueObject } from "../domain";
 
 export interface RepositoryInterface<
   Entity extends AbstractEntity,

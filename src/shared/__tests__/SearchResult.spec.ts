@@ -1,4 +1,4 @@
-import { SearchResult } from "../repository/SearchResult";
+import { SearchResult } from "../domain";
 
 describe('SearchResult Tests', () => {
   it('should create a SearchResult instance', () => {
