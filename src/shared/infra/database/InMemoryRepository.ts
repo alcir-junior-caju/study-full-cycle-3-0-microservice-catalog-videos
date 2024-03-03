@@ -1,5 +1,6 @@
-import { Entity as AbstractEntity, ValueObject } from "../domain";
-import { RepositoryInterface } from "../repository";
+import { Entity as AbstractEntity, ValueObject } from "../../domain";
+import { NotFoundError } from "../../errors";
+import { RepositoryInterface } from "../../repository";
 
 export abstract class InMemoryRepository<
   Entity extends AbstractEntity,
@@ -16,14 +17,14 @@ export abstract class InMemoryRepository<
   async update(entity: Entity): Promise<void> {
     const indexFound =  this.items.findIndex((item) => item.entityId.equals(entity.entityId));
     if(indexFound === -1) {
-      throw new Error("Entity not found");
+      throw new NotFoundError(entity.entityId, this.getEntity());
     }
     this.items[indexFound] = entity;
   }
   async delete(entityId: EntityId): Promise<void> {
     const indexFound =  this.items.findIndex((item) => item.entityId.equals(entityId));
     if(indexFound === -1) {
-      throw new Error("Entity not found");
+      throw new NotFoundError(entityId, this.getEntity());
     }
     this.items.splice(indexFound, 1);
   }

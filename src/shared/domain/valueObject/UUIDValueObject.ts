@@ -15,6 +15,10 @@ export class UUIDValueObject extends ValueObject {
       throw new InvalidUUIDError();
     }
   }
+
+  toString(): string {
+    return this.value;
+  }
 }
 
 export class InvalidUUIDError extends Error {

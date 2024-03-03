@@ -1,0 +1,69 @@
+import { SearchResult } from "../repository/SearchResult";
+
+describe('SearchResult Tests', () => {
+  it('should create a SearchResult instance', () => {
+    let result = new SearchResult({
+      items: ['entity1', 'entity2'] as any,
+      total: 4,
+      currentPage: 1,
+      perPage: 2,
+    });
+
+    expect(result.toJSON()).toStrictEqual({
+      items: ['entity1', 'entity2'] as any,
+      total: 4,
+      currentPage: 1,
+      perPage: 2,
+      lastPage: 2,
+    });
+
+    result = new SearchResult({
+      items: ['entity1', 'entity2'] as any,
+      total: 4,
+      currentPage: 1,
+      perPage: 2,
+    });
+
+    expect(result.toJSON()).toStrictEqual({
+      items: ['entity1', 'entity2'] as any,
+      total: 4,
+      currentPage: 1,
+      perPage: 2,
+      lastPage: 2,
+    });
+  });
+
+  it('should set lastPage = 1 when per_page field is greater than total field', () => {
+    const result = new SearchResult({
+      items: [] as any,
+      total: 4,
+      currentPage: 1,
+      perPage: 15,
+    });
+
+    expect(result.toJSON()).toStrictEqual({
+      items: [] as any,
+      total: 4,
+      currentPage: 1,
+      perPage: 15,
+      lastPage: 1,
+    });
+  });
+
+  test('lastPage prop when total is not a multiple of perPage', () => {
+    const result = new SearchResult({
+      items: [] as any,
+      total: 101,
+      currentPage: 1,
+      perPage: 20,
+    });
+
+    expect(result.toJSON()).toStrictEqual({
+      items: [] as any,
+      total: 101,
+      currentPage: 1,
+      perPage: 20,
+      lastPage: 6,
+    });
+  });
+});
