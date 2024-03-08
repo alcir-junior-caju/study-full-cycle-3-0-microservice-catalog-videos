@@ -7,7 +7,7 @@ describe('CategoryInMemoryRepository Tests', () => {
   beforeEach(() => (repository = new CategoryInMemoryRepository()));
 
   it('should no filter items when filter object is null', async () => {
-    const items = [CategoryEntity.create({ name: 'Category 1' })];
+    const items = [CategoryEntity.fake().CreateCategory().build()];
     const filterSpy = jest.spyOn(items, 'filter' as any);
 
     const itemsFiltered = await repository['setFilter'](items, null);
@@ -17,9 +17,9 @@ describe('CategoryInMemoryRepository Tests', () => {
 
   it('should filter items using filter parameter', async () => {
     const items = [
-      CategoryEntity.create({ name: 'test' }),
-      CategoryEntity.create({ name: 'TEST' }),
-      CategoryEntity.create({ name: 'fake' }),
+      CategoryEntity.fake().CreateCategory().withName('test').build(),
+      CategoryEntity.fake().CreateCategory().withName('TEST').build(),
+      CategoryEntity.fake().CreateCategory().withName('fake').build(),
     ];
     const filterSpy = jest.spyOn(items, 'filter' as any);
 
@@ -32,9 +32,21 @@ describe('CategoryInMemoryRepository Tests', () => {
     const createdAt = new Date();
 
     const items = [
-      new CategoryEntity({ name: 'test', createdAt }),
-      new CategoryEntity({ name: 'TEST', createdAt: new Date(createdAt.getTime() + 100) }),
-      new CategoryEntity({ name: 'fake', createdAt: new Date(createdAt.getTime() + 200) }),
+      CategoryEntity.fake()
+        .CreateCategory()
+        .withName('test')
+        .withCreatedAt(createdAt)
+        .build(),
+      CategoryEntity.fake()
+        .CreateCategory()
+        .withName('TEST')
+        .withCreatedAt(new Date(createdAt.getTime() + 100))
+        .build(),
+      CategoryEntity.fake()
+        .CreateCategory()
+        .withName('fake')
+        .withCreatedAt(new Date(createdAt.getTime() + 200))
+        .build(),
     ];
 
     const itemsSorted = repository['setSort'](items, null, null);
@@ -43,9 +55,9 @@ describe('CategoryInMemoryRepository Tests', () => {
 
   it('should sort by name', () => {
     const items = [
-      CategoryEntity.create({ name: 'c' }),
-      CategoryEntity.create({ name: 'b' }),
-      CategoryEntity.create({ name: 'a' }),
+      CategoryEntity.fake().CreateCategory().withName('c').build(),
+      CategoryEntity.fake().CreateCategory().withName('b').build(),
+      CategoryEntity.fake().CreateCategory().withName('a').build(),
     ];
 
     let itemsSorted = repository['setSort'](items, 'name', 'asc');

@@ -1,4 +1,5 @@
 import { Entity, UUIDValueObject, ValidatorError } from "../../../shared";
+import { CategoryFakeBuilder } from "../../faker";
 import { CategoryValidatorFactory } from "../../validator";
 
 type CategoryEntityParams = {
@@ -76,6 +77,10 @@ export class CategoryEntity extends Entity {
 
   deactivate(): void {
     this.isActive = false;
+  }
+
+  static fake() {
+    return CategoryFakeBuilder;
   }
 
   toJSON(): CategoryEntityParams {
