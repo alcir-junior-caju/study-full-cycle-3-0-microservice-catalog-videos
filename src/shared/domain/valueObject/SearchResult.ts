@@ -13,7 +13,7 @@ export class SearchResult<E extends Entity = Entity> extends ValueObject {
   protected _total: number;
   protected _currentPage: number;
   protected _perPage: number;
-  protected lastPage: number;
+  protected _lastPage: number;
 
   constructor({
     items,
@@ -26,7 +26,7 @@ export class SearchResult<E extends Entity = Entity> extends ValueObject {
     this._total = total;
     this._currentPage = currentPage;
     this._perPage = perPage;
-    this.lastPage = Math.ceil(total / perPage);
+    this._lastPage = Math.ceil(total / perPage);
   }
 
   toJSON(forceEntity = false) {
@@ -35,7 +35,7 @@ export class SearchResult<E extends Entity = Entity> extends ValueObject {
       total: this._total,
       currentPage: this._currentPage,
       perPage: this._perPage,
-      lastPage: this.lastPage,
+      lastPage: this._lastPage,
     };
   }
 }

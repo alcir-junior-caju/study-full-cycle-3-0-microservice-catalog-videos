@@ -18,7 +18,8 @@ export interface RepositoryInterface<
 export interface RepositorySearchableInterface<
   Entity extends AbstractEntity,
   EntityId extends ValueObject,
-  SearchInput = SearchParams,
+  Filter = string,
+  SearchInput = SearchParams<Filter>,
   SearchOutput = SearchResult,
 > extends RepositoryInterface<
   Entity,
