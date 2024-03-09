@@ -1,4 +1,16 @@
-import { RepositoryInterface, UUIDValueObject } from "../../shared";
+import { RepositorySearchableInterface, SearchParams, SearchResult, UUIDValueObject } from "../../shared";
 import { CategoryEntity } from "../domain";
 
-export interface CategoryRepositoryInterface extends RepositoryInterface<CategoryEntity, UUIDValueObject> {}
+export type CategoryFilter = string;
+
+export class CategorySearchParams extends SearchParams<CategoryFilter> {}
+
+export class CategorySearchResult extends SearchResult<CategoryEntity> {}
+
+export interface CategoryRepositoryInterface extends RepositorySearchableInterface<
+  CategoryEntity,
+  UUIDValueObject,
+  CategoryFilter,
+  CategorySearchParams,
+  CategorySearchResult
+> {}

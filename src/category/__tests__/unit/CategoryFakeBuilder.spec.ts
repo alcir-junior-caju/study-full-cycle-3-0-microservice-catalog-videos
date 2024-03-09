@@ -1,8 +1,8 @@
 import { Chance } from "chance";
-import { UUIDValueObject } from "../../shared";
-import { CategoryFakeBuilder } from "../faker";
+import { UUIDValueObject } from "../../../shared";
+import { CategoryFakeBuilder } from "../../faker";
 
-describe('CategoryFakeBuilder Tests', () => {
+describe('CategoryFakeBuilder Unit Tests', () => {
   describe('categoryId param', () => {
     const faker = CategoryFakeBuilder.CreateCategory();
 

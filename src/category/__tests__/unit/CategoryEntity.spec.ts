@@ -1,7 +1,7 @@
-import { UUIDValueObject } from "../../shared";
-import { CategoryEntity } from "../domain";
+import { UUIDValueObject } from "../../../shared";
+import { CategoryEntity } from "../../domain";
 
-describe('CategoryEntity Tests', () => {
+describe('CategoryEntity Unit Tests', () => {
   let validateSpy: jest.SpyInstance;
   beforeEach(() => {
     validateSpy = jest.spyOn(CategoryEntity, 'validate');

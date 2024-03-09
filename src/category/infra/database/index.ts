@@ -1,1 +1,2 @@
-export * from './CategoryInMemoryRepository';
+export * from "./inMemory";
+export * from "./sequelize";

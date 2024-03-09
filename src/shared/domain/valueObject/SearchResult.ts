@@ -1,7 +1,7 @@
 import { Entity } from "../entity";
 import { ValueObject } from "./ValueObject";
 
-export type SearchResultContructorParams<E extends Entity> = {
+export type SearchResultConstructorParams<E extends Entity> = {
   items: E[];
   total: number;
   currentPage: number;
@@ -20,7 +20,7 @@ export class SearchResult<E extends Entity = Entity> extends ValueObject {
     total,
     currentPage,
     perPage,
-  }: SearchResultContructorParams<E>) {
+  }: SearchResultConstructorParams<E>) {
     super();
     this._items = items;
     this._total = total;

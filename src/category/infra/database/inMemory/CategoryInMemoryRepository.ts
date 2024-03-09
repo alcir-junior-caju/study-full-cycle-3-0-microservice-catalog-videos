@@ -1,10 +1,13 @@
-import { InMemorySearchableRepository, SortDirection, UUIDValueObject } from "../../../shared";
-import { CategoryEntity } from "../../domain";
+import { InMemorySearchableRepository, SortDirection, UUIDValueObject } from "../../../../shared";
+import { CategoryEntity } from "../../../domain";
+import { CategoryRepositoryInterface } from "../../../repository";
 
-export class CategoryInMemoryRepository extends InMemorySearchableRepository<
-  CategoryEntity,
-  UUIDValueObject
-> {
+export class CategoryInMemoryRepository
+  extends InMemorySearchableRepository<
+    CategoryEntity,
+    UUIDValueObject
+  >
+  implements CategoryRepositoryInterface {
   sortableFields: string[] = ["name", "createdAt"];
 
   protected async setFilter(items: CategoryEntity[], filter: string): Promise<CategoryEntity[]> {

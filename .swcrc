@@ -14,6 +14,9 @@
     "baseUrl": "./",
     "keepClassNames": true,
     "paths": {
+      "@src/*": [
+        "./src/*"
+      ],
       "@core/*": [
         "./src/core/*"
       ]
