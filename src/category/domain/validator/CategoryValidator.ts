@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
-import { CategoryEntity } from "../domain";
-import { ValidatorFields } from "../../shared";
+import { CategoryEntity } from "../entity";
+import { ValidatorFields } from "../../../shared";
 
 export class CategoryValidator extends ValidatorFields<CategoryRules> {
   validate(entity: CategoryEntity) {

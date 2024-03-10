@@ -1,5 +1,5 @@
 import { Entity, UUIDValueObject } from "../domain";
-import { NotFoundError } from "../errors";
+import { NotFoundError } from "../domain";
 import { InMemoryRepository } from "../infra";
 
 type StubEntityParams = {

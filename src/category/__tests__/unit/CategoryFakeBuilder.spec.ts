@@ -1,6 +1,6 @@
 import { Chance } from "chance";
 import { UUIDValueObject } from "../../../shared";
-import { CategoryFakeBuilder } from "../../faker";
+import { CategoryFakeBuilder } from "../../domain/faker";
 
 describe('CategoryFakeBuilder Unit Tests', () => {
   describe('categoryId param', () => {

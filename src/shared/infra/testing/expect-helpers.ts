@@ -1,4 +1,4 @@
-import { FieldErrors, ValidatorError, ValidatorFields } from "../../validator";
+import { FieldErrors, ValidatorError, ValidatorFields } from "../../domain";
 
 type Expected = | {
   validator: ValidatorFields<any>;

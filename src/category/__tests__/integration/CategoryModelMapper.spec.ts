@@ -1,7 +1,7 @@
 import { CategoryModel, CategoryModelMapper, CategoryRepository } from "../../infra";
 import { setupSequelize, UUIDValueObject, ValidatorError } from "../../../shared";
 import { CategoryEntity } from "../../domain";
-import { CategorySearchParams, CategorySearchResult } from "../../repository";
+import { CategorySearchParams, CategorySearchResult } from "../../domain/repository";
 
 describe('CategoryModelMapper Integration Tests', () => {
   setupSequelize({ models: [CategoryModel] });

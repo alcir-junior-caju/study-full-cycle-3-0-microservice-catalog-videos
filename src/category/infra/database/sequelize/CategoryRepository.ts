@@ -1,9 +1,9 @@
 import { Op } from "sequelize";
 import { UUIDValueObject, NotFoundError } from "../../../../shared";
 import { CategoryEntity } from "../../../domain";
-import { CategoryRepositoryInterface, CategorySearchParams, CategorySearchResult } from "../../../repository";
 import { CategoryModel } from "./CategoryModel";
 import { CategoryModelMapper } from "./CategoryModelMapper";
+import { CategoryRepositoryInterface, CategorySearchParams, CategorySearchResult } from "../../../domain/repository";
 
 export class CategoryRepository implements CategoryRepositoryInterface {
   sortableFields: string[] = ["name", "createdAt"];

@@ -1,6 +1,6 @@
 import { InMemorySearchableRepository, SortDirection, UUIDValueObject } from "../../../../shared";
 import { CategoryEntity } from "../../../domain";
-import { CategoryRepositoryInterface } from "../../../repository";
+import { CategoryRepositoryInterface } from "../../../domain/repository";
 
 export class CategoryInMemoryRepository
   extends InMemorySearchableRepository<

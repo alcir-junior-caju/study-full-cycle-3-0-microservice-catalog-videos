@@ -1,6 +1,4 @@
-import { Entity as AbstractEntity, SearchParams, SearchResult, SortDirection, ValueObject } from "../../domain";
-import { NotFoundError } from "../../errors";
-import { RepositoryInterface, RepositorySearchableInterface } from "../../repository";
+import { Entity as AbstractEntity, NotFoundError, RepositoryInterface, RepositorySearchableInterface, SearchParams, SearchResult, SortDirection, ValueObject } from "../../domain";
 
 export abstract class InMemoryRepository<
   Entity extends AbstractEntity,

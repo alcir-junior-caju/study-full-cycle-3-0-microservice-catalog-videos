@@ -1,6 +1,6 @@
 import { Entity, UUIDValueObject, ValidatorError } from "../../../shared";
-import { CategoryFakeBuilder } from "../../faker";
-import { CategoryValidatorFactory } from "../../validator";
+import { CategoryFakeBuilder } from "../faker";
+import { CategoryValidatorFactory } from "../validator";
 
 type CategoryEntityParams = {
   categoryId?: UUIDValueObject;

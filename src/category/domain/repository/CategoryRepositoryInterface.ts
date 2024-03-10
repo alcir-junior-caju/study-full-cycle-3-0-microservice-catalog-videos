@@ -1,5 +1,5 @@
-import { RepositorySearchableInterface, SearchParams, SearchResult, UUIDValueObject } from "../../shared";
-import { CategoryEntity } from "../domain";
+import { RepositorySearchableInterface, SearchParams, SearchResult, UUIDValueObject } from "../../../shared";
+import { CategoryEntity } from "../../domain";
 
 export type CategoryFilter = string;
 
