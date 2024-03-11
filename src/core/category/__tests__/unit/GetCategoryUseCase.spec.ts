@@ -1,7 +1,11 @@
-import { InvalidUUIDError, NotFoundError, UUIDValueObject } from "../../../shared";
-import { GetCategoryUseCase } from "../../application";
-import { CategoryEntity } from "../../domain";
-import { CategoryInMemoryRepository } from "../../infra";
+import {
+  InvalidUUIDError,
+  NotFoundError,
+  UUIDValueObject,
+} from '../../../shared';
+import { GetCategoryUseCase } from '../../application';
+import { CategoryEntity } from '../../domain';
+import { CategoryInMemoryRepository } from '../../infra';
 
 describe('GetCategoryUseCase Unit Tests', () => {
   let useCase: GetCategoryUseCase;
@@ -18,9 +22,9 @@ describe('GetCategoryUseCase Unit Tests', () => {
     );
 
     const categoryId = new UUIDValueObject();
-    await expect(() => useCase.execute({ id: categoryId.value })).rejects.toThrow(
-      new NotFoundError(categoryId.value, CategoryEntity),
-    );
+    await expect(() =>
+      useCase.execute({ id: categoryId.value }),
+    ).rejects.toThrow(new NotFoundError(categoryId.value, CategoryEntity));
   });
 
   it('should be returns a category', async () => {

@@ -1,5 +1,5 @@
-import { Entity } from "../entity";
-import { ValueObject } from "./ValueObject";
+import { Entity } from '../entity';
+import { ValueObject } from './ValueObject';
 
 export type SearchResultConstructorParams<E extends Entity> = {
   items: E[];
@@ -31,7 +31,9 @@ export class SearchResult<E extends Entity = Entity> extends ValueObject {
 
   toJSON(forceEntity = false) {
     return {
-      items: forceEntity ? this._items.map((item) => item.toJSON()) : this._items,
+      items: forceEntity
+        ? this._items.map((item) => item.toJSON())
+        : this._items,
       total: this._total,
       currentPage: this._currentPage,
       perPage: this._perPage,

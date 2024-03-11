@@ -1,6 +1,6 @@
-import { UUIDValueObject, setupSequelize } from "../../../shared";
-import { CreateCategoryUseCase } from "../../application";
-import { CategoryModel, CategoryRepository } from "../../infra";
+import { UUIDValueObject, setupSequelize } from '../../../shared';
+import { CreateCategoryUseCase } from '../../application';
+import { CategoryModel, CategoryRepository } from '../../infra';
 
 describe('CreateCategoryUseCase Integration Tests', () => {
   let useCase: CreateCategoryUseCase;

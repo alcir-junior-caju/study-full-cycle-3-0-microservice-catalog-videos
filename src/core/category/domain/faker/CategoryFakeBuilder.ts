@@ -1,6 +1,6 @@
-import { Chance } from "chance";
-import { UUIDValueObject } from "../../../shared";
-import { CategoryEntity } from "../../domain";
+import { Chance } from 'chance';
+import { UUIDValueObject } from '../../../shared';
+import { CategoryEntity } from '../../domain';
 
 type PropOrFactory<T> = T | ((index: number) => T);
 
@@ -9,7 +9,8 @@ export class CategoryFakeBuilder<TBuild = any> {
 
   private _categoryId: PropOrFactory<UUIDValueObject> | undefined = undefined;
   private _name: PropOrFactory<string> = (_index) => this.chance.word();
-  private _description: PropOrFactory<string> = (_index) => this.chance.sentence();
+  private _description: PropOrFactory<string> = (_index) =>
+    this.chance.sentence();
   private _isActive: PropOrFactory<boolean> = (_index) => true;
   private _createdAt: PropOrFactory<Date> | undefined = undefined;
   private countObjs: number = 0;
@@ -63,21 +64,21 @@ export class CategoryFakeBuilder<TBuild = any> {
   }
 
   build(): TBuild {
-    const categories = new Array(this.countObjs)
-      .fill(0)
-      .map((_, index) => {
-        const category = new CategoryEntity({
-          categoryId: !this._categoryId ? undefined : this.callFactory(this._categoryId, index),
-          name: this.callFactory(this._name, index),
-          description: this.callFactory(this._description, index),
-          isActive: this.callFactory(this._isActive, index),
-          ...(this._createdAt && {
-            createdAt: this.callFactory(this._createdAt, index)
-          }),
-        });
-        category.validate();
-        return category;
+    const categories = new Array(this.countObjs).fill(0).map((_, index) => {
+      const category = new CategoryEntity({
+        categoryId: !this._categoryId
+          ? undefined
+          : this.callFactory(this._categoryId, index),
+        name: this.callFactory(this._name, index),
+        description: this.callFactory(this._description, index),
+        isActive: this.callFactory(this._isActive, index),
+        ...(this._createdAt && {
+          createdAt: this.callFactory(this._createdAt, index),
+        }),
       });
+      category.validate();
+      return category;
+    });
     return this.countObjs === 1 ? (categories[0] as any) : categories;
   }
 

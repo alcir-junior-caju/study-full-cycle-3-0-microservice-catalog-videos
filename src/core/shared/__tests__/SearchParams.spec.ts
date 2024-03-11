@@ -1,4 +1,4 @@
-import { SearchParams } from "../domain";
+import { SearchParams } from '../domain';
 
 describe('SearchParams Tests', () => {
   test.each([
@@ -60,24 +60,32 @@ describe('SearchParams Tests', () => {
     { sortDirection: undefined, expected: null },
     { sortDirection: '', expected: null },
   ])('sortDirection param %p', ({ sortDirection, expected }) => {
-    const searchParams = new SearchParams({ sortDirection: sortDirection as any });
+    const searchParams = new SearchParams({
+      sortDirection: sortDirection as any,
+    });
     expect(searchParams.sortDirection).toBe(expected);
   });
 
   test.each([
-    { sort: 'field', sortDirection: null, expected: 'asc'},
-    { sort: 'field', sortDirection: undefined, expected: 'asc'},
-    { sort: 'field', sortDirection: '', expected: 'asc'},
-    { sort: 'field', sortDirection: 0, expected: 'asc'},
-    { sort: 'field', sortDirection: 'fake', expected: 'asc'},
-    { sort: 'field', sortDirection: 'asc', expected: 'asc'},
-    { sort: 'field', sortDirection: 'ASC', expected: 'asc'},
-    { sort: 'field', sortDirection: 'desc', expected: 'desc'},
-    { sort: 'field', sortDirection: 'DESC', expected: 'desc'},
-  ])('sortDirection param with sort %p', ({ sort, sortDirection, expected }) => {
-    const searchParams = new SearchParams({ sort, sortDirection: sortDirection as any});
-    expect(searchParams.sortDirection).toBe(expected);
-  });
+    { sort: 'field', sortDirection: null, expected: 'asc' },
+    { sort: 'field', sortDirection: undefined, expected: 'asc' },
+    { sort: 'field', sortDirection: '', expected: 'asc' },
+    { sort: 'field', sortDirection: 0, expected: 'asc' },
+    { sort: 'field', sortDirection: 'fake', expected: 'asc' },
+    { sort: 'field', sortDirection: 'asc', expected: 'asc' },
+    { sort: 'field', sortDirection: 'ASC', expected: 'asc' },
+    { sort: 'field', sortDirection: 'desc', expected: 'desc' },
+    { sort: 'field', sortDirection: 'DESC', expected: 'desc' },
+  ])(
+    'sortDirection param with sort %p',
+    ({ sort, sortDirection, expected }) => {
+      const searchParams = new SearchParams({
+        sort,
+        sortDirection: sortDirection as any,
+      });
+      expect(searchParams.sortDirection).toBe(expected);
+    },
+  );
 
   test.each([
     { filter: null, expected: null },

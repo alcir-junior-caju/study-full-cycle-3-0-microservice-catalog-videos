@@ -1,14 +1,18 @@
-import { NotFoundError, UUIDValueObject, UseCaseInterface, ValidatorError } from "../../../../shared";
-import { CategoryEntity, CategoryRepositoryInterface } from "../../../domain";
-import { CategoryOutput, CategoryOutputMapper } from "../common";
-import { UpdateCategoryInput } from "./UpdateCategoryInput";
+import {
+  NotFoundError,
+  UUIDValueObject,
+  UseCaseInterface,
+  ValidatorError,
+} from '../../../../shared';
+import { CategoryEntity, CategoryRepositoryInterface } from '../../../domain';
+import { CategoryOutput, CategoryOutputMapper } from '../common';
+import { UpdateCategoryInput } from './UpdateCategoryInput';
 
 export type UpdateCategoryOutput = CategoryOutput;
 
-export class UpdateCategoryUseCase implements UseCaseInterface<
-  UpdateCategoryInput,
-  UpdateCategoryOutput
-> {
+export class UpdateCategoryUseCase
+  implements UseCaseInterface<UpdateCategoryInput, UpdateCategoryOutput>
+{
   private readonly categoryRepository: CategoryRepositoryInterface;
 
   constructor(categoryRepository: CategoryRepositoryInterface) {

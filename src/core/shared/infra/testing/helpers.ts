@@ -1,5 +1,5 @@
-import { Sequelize, SequelizeOptions } from "sequelize-typescript";
-import { Config } from "../configs";
+import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
+import { Config } from '../configs';
 
 export function setupSequelize(options: SequelizeOptions = {}) {
   let _sequelize: Sequelize;
@@ -18,6 +18,6 @@ export function setupSequelize(options: SequelizeOptions = {}) {
   return {
     get sequelize() {
       return _sequelize;
-    }
-  }
+    },
+  };
 }

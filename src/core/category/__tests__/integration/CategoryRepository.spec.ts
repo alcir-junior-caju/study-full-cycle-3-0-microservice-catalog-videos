@@ -1,6 +1,10 @@
-import { CategoryModel, CategoryRepository } from "../../infra";
-import { CategoryEntity } from "../../domain";
-import { setupSequelize, NotFoundError, UUIDValueObject } from "../../../shared";
+import { CategoryModel, CategoryRepository } from '../../infra';
+import { CategoryEntity } from '../../domain';
+import {
+  setupSequelize,
+  NotFoundError,
+  UUIDValueObject,
+} from '../../../shared';
 
 describe('CategoryRepository Integration Tests', () => {
   setupSequelize({ models: [CategoryModel] });
@@ -46,8 +50,8 @@ describe('CategoryRepository Integration Tests', () => {
   it('should be able to update a category', async () => {
     const category = CategoryEntity.fake().CreateCategory().build();
     await repository.insert(category);
-    category.name = "new name";
-    category.description = "new description";
+    category.name = 'new name';
+    category.description = 'new description';
     category.isActive = false;
     await repository.update(category);
     const model = await CategoryModel.findByPk(category.categoryId.value);
@@ -63,7 +67,7 @@ describe('CategoryRepository Integration Tests', () => {
   it('should be throw when try to update a category and not found', async () => {
     const category = CategoryEntity.fake().CreateCategory().build();
     await expect(repository.update(category)).rejects.toThrow(
-      new NotFoundError(category.categoryId.value, CategoryEntity)
+      new NotFoundError(category.categoryId.value, CategoryEntity),
     );
   });
 
@@ -78,7 +82,7 @@ describe('CategoryRepository Integration Tests', () => {
   it('should be throw when try to delete a category and not found', async () => {
     const categoryId = new UUIDValueObject();
     await expect(repository.delete(categoryId)).rejects.toThrow(
-      new NotFoundError(categoryId.value, CategoryEntity)
+      new NotFoundError(categoryId.value, CategoryEntity),
     );
   });
 });

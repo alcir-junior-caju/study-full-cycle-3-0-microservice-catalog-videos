@@ -1,4 +1,4 @@
-import { SearchResult } from "../domain";
+import { SearchResult } from '../domain';
 
 export type PaginationOutput<Item = any> = {
   items: Item[];
@@ -11,14 +11,9 @@ export type PaginationOutput<Item = any> = {
 export class PaginationOutputMapper {
   static toOutput<Item = any>(
     items: Item[],
-    params: Omit<SearchResult, "items">
+    params: Omit<SearchResult, 'items'>,
   ): PaginationOutput<Item> {
-    const {
-      total,
-      currentPage,
-      lastPage,
-      perPage,
-    } = params.toJSON();
+    const { total, currentPage, lastPage, perPage } = params.toJSON();
 
     return {
       items,

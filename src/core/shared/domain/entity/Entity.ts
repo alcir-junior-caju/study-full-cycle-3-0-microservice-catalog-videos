@@ -1,5 +1,5 @@
-import { NotificationPartner } from "../validator";
-import { ValueObject } from "../valueObject";
+import { NotificationPartner } from '../validator';
+import { ValueObject } from '../valueObject';
 
 export abstract class Entity {
   notification: NotificationPartner = new NotificationPartner();

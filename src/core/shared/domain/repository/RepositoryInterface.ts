@@ -1,10 +1,9 @@
-import { SearchParams, SearchResult, ValueObject } from "../valueObject";
-import { Entity as AbstractEntity } from "../entity";
-
+import { SearchParams, SearchResult, ValueObject } from '../valueObject';
+import { Entity as AbstractEntity } from '../entity';
 
 export interface RepositoryInterface<
   Entity extends AbstractEntity,
-  EntityId extends ValueObject
+  EntityId extends ValueObject,
 > {
   insert(entity: Entity): Promise<void>;
   bulkInsert(entities: Entity[]): Promise<void>;
@@ -23,10 +22,7 @@ export interface RepositorySearchableInterface<
   Filter = string,
   SearchInput = SearchParams<Filter>,
   SearchOutput = SearchResult,
-> extends RepositoryInterface<
-  Entity,
-  EntityId
-> {
+> extends RepositoryInterface<Entity, EntityId> {
   sortableFields: string[];
   search(params: SearchInput): Promise<SearchOutput>;
 }

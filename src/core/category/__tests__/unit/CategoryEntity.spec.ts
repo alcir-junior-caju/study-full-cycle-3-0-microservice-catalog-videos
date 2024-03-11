@@ -1,5 +1,5 @@
-import { UUIDValueObject } from "../../../shared";
-import { CategoryEntity } from "../../domain";
+import { UUIDValueObject } from '../../../shared';
+import { CategoryEntity } from '../../domain';
 
 describe('CategoryEntity Unit Tests', () => {
   beforeEach(() => {

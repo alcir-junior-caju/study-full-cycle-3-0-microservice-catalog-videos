@@ -1,6 +1,10 @@
-import { NotFoundError, UUIDValueObject, UseCaseInterface } from "../../../../shared";
-import { CategoryEntity, CategoryRepositoryInterface } from "../../../domain";
-import { CategoryOutput, CategoryOutputMapper } from "../common";
+import {
+  NotFoundError,
+  UUIDValueObject,
+  UseCaseInterface,
+} from '../../../../shared';
+import { CategoryEntity, CategoryRepositoryInterface } from '../../../domain';
+import { CategoryOutput, CategoryOutputMapper } from '../common';
 
 export type GetCategoryInput = {
   id: string;
@@ -8,10 +12,9 @@ export type GetCategoryInput = {
 
 export type GetCategoryOutput = CategoryOutput;
 
-export class GetCategoryUseCase implements UseCaseInterface<
-  GetCategoryInput,
-  GetCategoryOutput
-> {
+export class GetCategoryUseCase
+  implements UseCaseInterface<GetCategoryInput, GetCategoryOutput>
+{
   private readonly categoryRepository: CategoryRepositoryInterface;
 
   constructor(categoryRepository: CategoryRepositoryInterface) {

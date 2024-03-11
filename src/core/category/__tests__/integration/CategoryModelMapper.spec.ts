@@ -1,7 +1,18 @@
-import { CategoryModel, CategoryModelMapper, CategoryRepository } from "../../infra";
-import { setupSequelize, UUIDValueObject, ValidatorError } from "../../../shared";
-import { CategoryEntity } from "../../domain";
-import { CategorySearchParams, CategorySearchResult } from "../../domain/repository";
+import {
+  CategoryModel,
+  CategoryModelMapper,
+  CategoryRepository,
+} from '../../infra';
+import {
+  setupSequelize,
+  UUIDValueObject,
+  ValidatorError,
+} from '../../../shared';
+import { CategoryEntity } from '../../domain';
+import {
+  CategorySearchParams,
+  CategorySearchResult,
+} from '../../domain/repository';
 
 describe('CategoryModelMapper Integration Tests', () => {
   setupSequelize({ models: [CategoryModel] });
@@ -42,42 +53,42 @@ describe('CategoryModelMapper Integration Tests', () => {
   it('should be able to convert a model to entity', async () => {
     const createdAt = new Date();
     const model = CategoryModel.build({
-      categoryId: "9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e",
-      name: "category name",
-      description: "category description",
+      categoryId: '9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e',
+      name: 'category name',
+      description: 'category description',
       isActive: true,
       createdAt,
     });
     const entity = CategoryModelMapper.toEntity(model);
     expect(entity.toJSON()).toStrictEqual(
       new CategoryEntity({
-        categoryId: new UUIDValueObject("9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e"),
-        name: "category name",
-        description: "category description",
+        categoryId: new UUIDValueObject('9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e'),
+        name: 'category name',
+        description: 'category description',
         isActive: true,
         createdAt,
-      }).toJSON()
+      }).toJSON(),
     );
   });
 
   it('should be able to convert a entity to model', async () => {
     const createdAt = new Date();
     const entity = new CategoryEntity({
-      categoryId: new UUIDValueObject("9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e"),
-      name: "category name",
-      description: "category description",
+      categoryId: new UUIDValueObject('9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e'),
+      name: 'category name',
+      description: 'category description',
       isActive: true,
       createdAt,
     });
     const model = CategoryModelMapper.toModel(entity);
     expect(model.toJSON()).toStrictEqual(
       CategoryModel.build({
-        categoryId: "9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e",
-        name: "category name",
-        description: "category description",
+        categoryId: '9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e',
+        name: 'category name',
+        description: 'category description',
         isActive: true,
         createdAt,
-      }).toJSON()
+      }).toJSON(),
     );
   });
 
@@ -86,12 +97,12 @@ describe('CategoryModelMapper Integration Tests', () => {
       const createdAt = new Date();
       const categories = CategoryEntity.fake()
         .CreateCategories(16)
-        .withName("category name")
+        .withName('category name')
         .withDescription(null)
         .withCreatedAt(createdAt)
         .build();
       await repository.bulkInsert(categories);
-      const spyToEntity = jest.spyOn(CategoryModelMapper, "toEntity");
+      const spyToEntity = jest.spyOn(CategoryModelMapper, 'toEntity');
       const searchOutput = await repository.search(new CategorySearchParams());
       expect(searchOutput).toBeInstanceOf(CategorySearchResult);
       expect(spyToEntity).toHaveBeenCalledTimes(15);
@@ -101,18 +112,18 @@ describe('CategoryModelMapper Integration Tests', () => {
         lastPage: 2,
         perPage: 15,
       });
-      searchOutput.toJSON().items.forEach(item => {
+      searchOutput.toJSON().items.forEach((item) => {
         expect(item).toBeInstanceOf(CategoryEntity);
         expect(item.categoryId).toBeDefined();
       });
-      const items = searchOutput.toJSON().items.map(item => item.toJSON());
+      const items = searchOutput.toJSON().items.map((item) => item.toJSON());
       expect(items).toMatchObject(
         new Array(15).fill({
-          name: "category name",
-          description: "",
+          name: 'category name',
+          description: '',
           isActive: true,
           createdAt,
-        })
+        }),
       );
     });
 
@@ -120,9 +131,9 @@ describe('CategoryModelMapper Integration Tests', () => {
       const createdAt = new Date();
       const categories = CategoryEntity.fake()
         .CreateCategories(16)
-        .withName(index => `category name ${index + 1}`)
+        .withName((index) => `category name ${index + 1}`)
         .withDescription(null)
-        .withCreatedAt(index => new Date(createdAt.getTime() + index))
+        .withCreatedAt((index) => new Date(createdAt.getTime() + index))
         .build();
       const searchOutput = await repository.search(new CategorySearchParams());
       const items = searchOutput.toJSON().items;
@@ -135,49 +146,51 @@ describe('CategoryModelMapper Integration Tests', () => {
       const categories = [
         CategoryEntity.fake()
           .CreateCategory()
-          .withName("test")
+          .withName('test')
           .withCreatedAt(new Date(new Date().getTime() + 5000))
           .build(),
         CategoryEntity.fake()
           .CreateCategory()
-          .withName("a")
+          .withName('a')
           .withCreatedAt(new Date(new Date().getTime() + 4000))
           .build(),
         CategoryEntity.fake()
           .CreateCategory()
-          .withName("TEST")
+          .withName('TEST')
           .withCreatedAt(new Date(new Date().getTime() + 3000))
           .build(),
         CategoryEntity.fake()
           .CreateCategory()
-          .withName("TeSt")
+          .withName('TeSt')
           .withCreatedAt(new Date(new Date().getTime() + 1000))
           .build(),
       ];
       await repository.bulkInsert(categories);
-      const searchOutput = await repository.search(new CategorySearchParams({
-        page: 1,
-        perPage: 2,
-        filter: "TEST",
-      }));
+      const searchOutput = await repository.search(
+        new CategorySearchParams({
+          page: 1,
+          perPage: 2,
+          filter: 'TEST',
+        }),
+      );
       expect(searchOutput.toJSON(true)).toMatchObject(
         new CategorySearchResult({
           items: [categories[0], categories[2]],
           total: 3,
           currentPage: 1,
           perPage: 2,
-        }).toJSON(true)
+        }).toJSON(true),
       );
     });
 
     it('should be set paginate, filter and sort', async () => {
-      expect(repository.sortableFields).toStrictEqual(["name", "createdAt"]);
+      expect(repository.sortableFields).toStrictEqual(['name', 'createdAt']);
       const categories = [
-        CategoryEntity.fake().CreateCategory().withName("b").build(),
-        CategoryEntity.fake().CreateCategory().withName("a").build(),
-        CategoryEntity.fake().CreateCategory().withName("d").build(),
-        CategoryEntity.fake().CreateCategory().withName("e").build(),
-        CategoryEntity.fake().CreateCategory().withName("c").build(),
+        CategoryEntity.fake().CreateCategory().withName('b').build(),
+        CategoryEntity.fake().CreateCategory().withName('a').build(),
+        CategoryEntity.fake().CreateCategory().withName('d').build(),
+        CategoryEntity.fake().CreateCategory().withName('e').build(),
+        CategoryEntity.fake().CreateCategory().withName('c').build(),
       ];
       await repository.bulkInsert(categories);
       const arrange = [
@@ -185,7 +198,7 @@ describe('CategoryModelMapper Integration Tests', () => {
           params: new CategorySearchParams({
             page: 1,
             perPage: 2,
-            sort: "name",
+            sort: 'name',
           }),
           result: new CategorySearchResult({
             items: [categories[1], categories[0]],

@@ -1,9 +1,9 @@
-import { NotificationPartner } from "../../domain";
+import { NotificationPartner } from '../../domain';
 
 expect.extend({
   notificationContainsErrorMessages(
     expected: NotificationPartner,
-    received: Array<string | { [key: string]: string[] }>
+    received: Array<string | { [key: string]: string[] }>,
   ) {
     const every = received.every((error) => {
       if (typeof error === 'string') {

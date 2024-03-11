@@ -1,5 +1,5 @@
-import { Entity, SearchParams, SearchResult, UUIDValueObject } from "../domain";
-import { InMemorySearchableRepository } from "../infra";
+import { Entity, SearchParams, SearchResult, UUIDValueObject } from '../domain';
+import { InMemorySearchableRepository } from '../infra';
 
 type StubEntityConstructorParams = {
   entityId?: UUIDValueObject;
@@ -40,13 +40,17 @@ class StubInMemorySearchableRepository extends InMemorySearchableRepository<
 
   protected async setFilter(
     items: StubEntity[],
-    filter: string
+    filter: string,
   ): Promise<StubEntity[]> {
     if (!filter) {
       return items;
     }
 
-    return items.filter((item) => item.name.toLowerCase().includes(filter.toLowerCase()) || item.price.toString().includes(filter));
+    return items.filter(
+      (item) =>
+        item.name.toLowerCase().includes(filter.toLowerCase()) ||
+        item.price.toString().includes(filter),
+    );
   }
 }
 

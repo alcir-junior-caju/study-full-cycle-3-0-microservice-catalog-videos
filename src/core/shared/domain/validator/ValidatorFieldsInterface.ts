@@ -1,9 +1,15 @@
-import { NotificationPartner } from "./NotificationPattern";
+import { NotificationPartner } from './NotificationPattern';
 
-export type FieldErrors = | {
-  [field: string]: string[];
-} | string;
+export type FieldErrors =
+  | {
+      [field: string]: string[];
+    }
+  | string;
 
 export interface ValidatorFieldsInterface {
-  validate(notification: NotificationPartner, data: any, fields: string[]): boolean;
+  validate(
+    notification: NotificationPartner,
+    data: any,
+    fields: string[],
+  ): boolean;
 }

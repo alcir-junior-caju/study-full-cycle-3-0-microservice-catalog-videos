@@ -1,7 +1,11 @@
-import { NotFoundError, UUIDValueObject, setupSequelize } from "../../../shared";
-import { UpdateCategoryUseCase } from "../../application";
-import { CategoryEntity } from "../../domain";
-import { CategoryModel, CategoryRepository } from "../../infra";
+import {
+  NotFoundError,
+  UUIDValueObject,
+  setupSequelize,
+} from '../../../shared';
+import { UpdateCategoryUseCase } from '../../application';
+import { CategoryEntity } from '../../domain';
+import { CategoryModel, CategoryRepository } from '../../infra';
 
 describe('UpdateCategoryUseCase Integration Tests', () => {
   let useCase: UpdateCategoryUseCase;

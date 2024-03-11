@@ -1,1 +1,1 @@
-export * from "./CategoryValidator";
+export * from './CategoryValidator';

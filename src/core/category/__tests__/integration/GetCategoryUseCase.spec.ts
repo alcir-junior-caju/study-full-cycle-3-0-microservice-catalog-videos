@@ -1,7 +1,11 @@
-import { NotFoundError, UUIDValueObject, setupSequelize } from "../../../shared";
-import { GetCategoryUseCase } from "../../application";
-import { CategoryEntity } from "../../domain";
-import { CategoryModel, CategoryRepository } from "../../infra";
+import {
+  NotFoundError,
+  UUIDValueObject,
+  setupSequelize,
+} from '../../../shared';
+import { GetCategoryUseCase } from '../../application';
+import { CategoryEntity } from '../../domain';
+import { CategoryModel, CategoryRepository } from '../../infra';
 
 describe('GetCategoryUseCase Integration Tests', () => {
   let useCase: GetCategoryUseCase;
@@ -16,9 +20,9 @@ describe('GetCategoryUseCase Integration Tests', () => {
 
   it('should be throws error when entity not found', async () => {
     const categoryId = new UUIDValueObject();
-    await expect(() => useCase.execute({ id: categoryId.value })).rejects.toThrow(
-      new NotFoundError(categoryId.value, CategoryEntity),
-    );
+    await expect(() =>
+      useCase.execute({ id: categoryId.value }),
+    ).rejects.toThrow(new NotFoundError(categoryId.value, CategoryEntity));
   });
 
   it('should be returns a category', async () => {

@@ -1,5 +1,5 @@
-import { UUIDValueObject, UseCaseInterface } from "../../../../shared";
-import { CategoryRepositoryInterface } from "../../../domain";
+import { UUIDValueObject, UseCaseInterface } from '../../../../shared';
+import { CategoryRepositoryInterface } from '../../../domain';
 
 export type DeleteCategoryInput = {
   id: string;
@@ -7,10 +7,9 @@ export type DeleteCategoryInput = {
 
 export type DeleteCategoryOutput = void;
 
-export class DeleteCategoryUseCase implements UseCaseInterface<
-  DeleteCategoryInput,
-  DeleteCategoryOutput
-> {
+export class DeleteCategoryUseCase
+  implements UseCaseInterface<DeleteCategoryInput, DeleteCategoryOutput>
+{
   private readonly categoryRepository: CategoryRepositoryInterface;
 
   constructor(categoryRepository: CategoryRepositoryInterface) {

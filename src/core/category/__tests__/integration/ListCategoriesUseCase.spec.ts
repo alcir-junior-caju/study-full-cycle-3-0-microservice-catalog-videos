@@ -1,7 +1,7 @@
-import { setupSequelize } from "../../../shared";
-import { CategoryOutputMapper, ListCategoriesUseCase } from "../../application";
-import { CategoryEntity } from "../../domain";
-import { CategoryModel, CategoryRepository } from "../../infra";
+import { setupSequelize } from '../../../shared';
+import { CategoryOutputMapper, ListCategoriesUseCase } from '../../application';
+import { CategoryEntity } from '../../domain';
+import { CategoryModel, CategoryRepository } from '../../infra';
 
 describe('ListCategoriesUseCase Integration Tests', () => {
   let useCase: ListCategoriesUseCase;

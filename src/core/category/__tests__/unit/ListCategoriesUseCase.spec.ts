@@ -1,6 +1,6 @@
-import { CategoryOutputMapper, ListCategoriesUseCase } from "../../application";
-import { CategoryEntity, CategorySearchResult } from "../../domain";
-import { CategoryInMemoryRepository } from "../../infra";
+import { CategoryOutputMapper, ListCategoriesUseCase } from '../../application';
+import { CategoryEntity, CategorySearchResult } from '../../domain';
+import { CategoryInMemoryRepository } from '../../infra';
 
 describe('ListCategoriesUseCase Unit Tests', () => {
   let useCase: ListCategoriesUseCase;

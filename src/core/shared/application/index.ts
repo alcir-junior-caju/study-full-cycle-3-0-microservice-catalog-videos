@@ -1,2 +1,2 @@
-export * from "./UseCaseInterface";
-export * from "./PaginationOutput";
+export * from './UseCaseInterface';
+export * from './PaginationOutput';

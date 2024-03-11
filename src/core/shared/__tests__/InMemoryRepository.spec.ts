@@ -1,6 +1,6 @@
-import { Entity, UUIDValueObject } from "../domain";
-import { NotFoundError } from "../domain";
-import { InMemoryRepository } from "../infra";
+import { Entity, UUIDValueObject } from '../domain';
+import { NotFoundError } from '../domain';
+import { InMemoryRepository } from '../infra';
 
 type StubEntityParams = {
   entityId?: UUIDValueObject;
@@ -16,24 +16,27 @@ class StubEntity extends Entity {
   constructor({
     entityId = new UUIDValueObject(),
     name,
-    price
+    price,
   }: StubEntityParams) {
     super();
     this.entityId = entityId ?? new UUIDValueObject();
     this.name = name;
     this.price = price;
-  };
+  }
 
   toJSON() {
     return {
       entityId: this.entityId.value,
       name: this.name,
-      price: this.price
+      price: this.price,
     };
   }
 }
 
-class StubInMemoryRepository extends InMemoryRepository<StubEntity, UUIDValueObject> {
+class StubInMemoryRepository extends InMemoryRepository<
+  StubEntity,
+  UUIDValueObject
+> {
   getEntity(): new (...args: any[]) => StubEntity {
     return StubEntity;
   }
@@ -50,7 +53,7 @@ describe('InMemoryRepository Tests', () => {
     const entity = new StubEntity({
       entityId: new UUIDValueObject(),
       name: 'Test Entity',
-      price: 100
+      price: 100,
     });
     await repository.insert(entity);
     expect(repository.items.length).toBe(1);
@@ -64,13 +67,13 @@ describe('InMemoryRepository Tests', () => {
       new StubEntity({
         entityId: new UUIDValueObject(),
         name: 'Test Entity 1',
-        price: 100
+        price: 100,
       }),
       new StubEntity({
         entityId: new UUIDValueObject(),
         name: 'Test Entity 2',
-        price: 200
-      })
+        price: 200,
+      }),
     ];
     await repository.bulkInsert(entities);
     expect(repository.items.length).toBe(2);
@@ -86,13 +89,13 @@ describe('InMemoryRepository Tests', () => {
     const entity = new StubEntity({
       entityId: new UUIDValueObject(),
       name: 'Test Entity',
-      price: 100
+      price: 100,
     });
     await repository.insert(entity);
     const updatedEntity = new StubEntity({
       entityId: entity.entityId,
       name: 'Updated Entity',
-      price: 200
+      price: 200,
     });
     await repository.update(updatedEntity);
     expect(repository.items.length).toBe(1);
@@ -105,7 +108,7 @@ describe('InMemoryRepository Tests', () => {
     const entity = new StubEntity({
       entityId: new UUIDValueObject(),
       name: 'Test Entity',
-      price: 100
+      price: 100,
     });
     await repository.insert(entity);
     await repository.delete(entity.entityId);
@@ -116,7 +119,7 @@ describe('InMemoryRepository Tests', () => {
     const entity = new StubEntity({
       entityId: new UUIDValueObject(),
       name: 'Test Entity',
-      price: 100
+      price: 100,
     });
     await repository.insert(entity);
     const foundEntity = await repository.findById(entity.entityId);
@@ -131,13 +134,13 @@ describe('InMemoryRepository Tests', () => {
       new StubEntity({
         entityId: new UUIDValueObject(),
         name: 'Test Entity 1',
-        price: 100
+        price: 100,
       }),
       new StubEntity({
         entityId: new UUIDValueObject(),
         name: 'Test Entity 2',
-        price: 200
-      })
+        price: 200,
+      }),
     ];
     await repository.bulkInsert(entities);
     const foundEntities = await repository.findAll();
@@ -159,7 +162,7 @@ describe('InMemoryRepository Tests', () => {
     const entity = new StubEntity({
       entityId: new UUIDValueObject(),
       name: 'Test Entity',
-      price: 100
+      price: 100,
     });
     await expect(repository.update(entity)).rejects.toThrow(
       new NotFoundError(entity.entityId, StubEntity),

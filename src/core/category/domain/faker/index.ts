@@ -1,1 +1,1 @@
-export * from "./CategoryFakeBuilder";
+export * from './CategoryFakeBuilder';

@@ -1,6 +1,6 @@
-import { Entity, UUIDValueObject } from "../../../shared";
-import { CategoryFakeBuilder } from "../faker";
-import { CategoryValidatorFactory } from "../validator";
+import { Entity, UUIDValueObject } from '../../../shared';
+import { CategoryFakeBuilder } from '../faker';
+import { CategoryValidatorFactory } from '../validator';
 
 type CategoryEntityParams = {
   categoryId?: UUIDValueObject;
@@ -8,13 +8,13 @@ type CategoryEntityParams = {
   description?: string;
   isActive?: boolean;
   createdAt?: Date;
-}
+};
 
 type CategoryEntityCreateCommand = {
   name: string;
   description?: string;
   isActive?: boolean;
-}
+};
 
 export class CategoryEntity extends Entity {
   categoryId: UUIDValueObject;
@@ -23,7 +23,13 @@ export class CategoryEntity extends Entity {
   isActive?: boolean;
   createdAt?: Date;
 
-  constructor({ categoryId, name, description, isActive, createdAt }: CategoryEntityParams) {
+  constructor({
+    categoryId,
+    name,
+    description,
+    isActive,
+    createdAt,
+  }: CategoryEntityParams) {
     super();
     this.categoryId = categoryId ?? new UUIDValueObject();
     this.name = name;
@@ -36,31 +42,35 @@ export class CategoryEntity extends Entity {
     return this.categoryId;
   }
 
-  static create({ name, description, isActive }: CategoryEntityCreateCommand): CategoryEntity {
+  static create({
+    name,
+    description,
+    isActive,
+  }: CategoryEntityCreateCommand): CategoryEntity {
     const category = new CategoryEntity({
       name,
       description,
-      isActive: isActive
+      isActive: isActive,
     });
-    category.validate(["name"]);
+    category.validate(['name']);
     return category;
   }
 
   changeName(name: string): void {
     this.name = name;
-    this.validate(["name"]);
+    this.validate(['name']);
   }
 
   // TODO: remove after challenge
   update({ name, description }: CategoryEntityCreateCommand): void {
     this.name = name;
     this.description = description;
-    this.validate(["name"]);
+    this.validate(['name']);
   }
 
   changeDescription(description: string): void {
     this.description = description;
-    this.validate(["name"]);
+    this.validate(['name']);
   }
 
   activate(): void {
@@ -86,7 +96,7 @@ export class CategoryEntity extends Entity {
       name: this.name,
       description: this.description,
       isActive: this.isActive,
-      createdAt: this.createdAt
+      createdAt: this.createdAt,
     };
   }
 }

@@ -1,1 +1,1 @@
-export * from "./UpdateCategoryUseCase";
+export * from './UpdateCategoryUseCase';

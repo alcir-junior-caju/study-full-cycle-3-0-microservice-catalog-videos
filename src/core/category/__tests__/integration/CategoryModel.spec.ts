@@ -1,7 +1,7 @@
-import { DataType } from "sequelize-typescript";
-import { CategoryModel } from "../../infra";
-import { CategoryEntity } from "../../domain";
-import { setupSequelize } from "../../../shared";
+import { DataType } from 'sequelize-typescript';
+import { CategoryModel } from '../../infra';
+import { CategoryEntity } from '../../domain';
+import { setupSequelize } from '../../../shared';
 
 describe('CategoryModel Integration Tests', () => {
   setupSequelize({ models: [CategoryModel] });
@@ -63,9 +63,11 @@ describe('CategoryModel Integration Tests', () => {
       description: categoryEntity.description,
       isActive: categoryEntity.isActive,
       createdAt: categoryEntity.createdAt,
-    })
+    });
 
-    const categoryModel = CategoryModel.findByPk(categoryEntity.categoryId.value);
+    const categoryModel = CategoryModel.findByPk(
+      categoryEntity.categoryId.value,
+    );
 
     expect((await categoryModel).toJSON()).toStrictEqual({
       categoryId: categoryEntity.categoryId.value,

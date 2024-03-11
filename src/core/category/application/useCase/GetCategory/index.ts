@@ -1,1 +1,1 @@
-export * from "./GetCategoryUseCase";
+export * from './GetCategoryUseCase';

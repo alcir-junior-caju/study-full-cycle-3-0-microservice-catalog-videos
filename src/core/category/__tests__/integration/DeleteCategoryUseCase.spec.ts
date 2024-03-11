@@ -1,7 +1,11 @@
-import { NotFoundError, UUIDValueObject, setupSequelize } from "../../../shared";
-import { DeleteCategoryUseCase } from "../../application";
-import { CategoryEntity } from "../../domain";
-import { CategoryModel, CategoryRepository } from "../../infra";
+import {
+  NotFoundError,
+  UUIDValueObject,
+  setupSequelize,
+} from '../../../shared';
+import { DeleteCategoryUseCase } from '../../application';
+import { CategoryEntity } from '../../domain';
+import { CategoryModel, CategoryRepository } from '../../infra';
 
 describe('DeleteCategoryUseCase Integration Tests', () => {
   let useCase: DeleteCategoryUseCase;
@@ -16,9 +20,9 @@ describe('DeleteCategoryUseCase Integration Tests', () => {
 
   it('should be throws error when entity not found', async () => {
     const categoryId = new UUIDValueObject();
-    await expect(() => useCase.execute({ id: categoryId.value })).rejects.toThrow(
-      new NotFoundError(categoryId.value, CategoryEntity),
-    );
+    await expect(() =>
+      useCase.execute({ id: categoryId.value }),
+    ).rejects.toThrow(new NotFoundError(categoryId.value, CategoryEntity));
   });
 
   it('should be delete a category', async () => {

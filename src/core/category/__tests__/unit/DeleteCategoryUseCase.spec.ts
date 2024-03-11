@@ -1,7 +1,11 @@
-import { InvalidUUIDError, NotFoundError, UUIDValueObject } from "../../../shared";
-import { DeleteCategoryUseCase } from "../../application";
-import { CategoryEntity } from "../../domain";
-import { CategoryInMemoryRepository } from "../../infra";
+import {
+  InvalidUUIDError,
+  NotFoundError,
+  UUIDValueObject,
+} from '../../../shared';
+import { DeleteCategoryUseCase } from '../../application';
+import { CategoryEntity } from '../../domain';
+import { CategoryInMemoryRepository } from '../../infra';
 
 describe('DeleteCategoryUseCase Unit Tests', () => {
   let useCase: DeleteCategoryUseCase;
@@ -19,9 +23,9 @@ describe('DeleteCategoryUseCase Unit Tests', () => {
 
     const categoryId = new UUIDValueObject();
 
-    await expect(() => useCase.execute({ id: categoryId.value })).rejects.toThrow(
-      new NotFoundError(categoryId.value, CategoryEntity),
-    );
+    await expect(() =>
+      useCase.execute({ id: categoryId.value }),
+    ).rejects.toThrow(new NotFoundError(categoryId.value, CategoryEntity));
   });
 
   it('should be delete a category', async () => {

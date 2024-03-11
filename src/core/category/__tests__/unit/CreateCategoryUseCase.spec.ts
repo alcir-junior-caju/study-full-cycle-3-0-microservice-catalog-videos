@@ -1,5 +1,5 @@
-import { CreateCategoryUseCase } from "../../application";
-import { CategoryInMemoryRepository } from "../../infra";
+import { CreateCategoryUseCase } from '../../application';
+import { CategoryInMemoryRepository } from '../../infra';
 
 describe('CreateCategoryUseCase Unit Tests', () => {
   let useCase: CreateCategoryUseCase;
@@ -13,7 +13,7 @@ describe('CreateCategoryUseCase Unit Tests', () => {
   it('should be throw a validation error', async () => {
     const input = { name: 't'.repeat(256) };
     await expect(() => useCase.execute(input)).rejects.toThrow(
-      'Entity Validation Error'
+      'Entity Validation Error',
     );
   });
 

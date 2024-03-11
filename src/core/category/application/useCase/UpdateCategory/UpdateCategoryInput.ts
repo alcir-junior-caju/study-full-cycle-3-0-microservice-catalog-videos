@@ -36,7 +36,7 @@ export class UpdateCategoryInput {
     params.name && (this.name = params.name);
     params.description && (this.description = params.description);
     params.isActive !== null &&
-    params.isActive !== undefined &&
+      params.isActive !== undefined &&
       (this.isActive = params.isActive);
   }
 }

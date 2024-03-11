@@ -1,14 +1,13 @@
-import { UseCaseInterface, ValidatorError } from "../../../../shared";
-import { CategoryEntity, CategoryRepositoryInterface } from "../../../domain";
-import { CategoryOutput, CategoryOutputMapper } from "../common";
-import { CreateCategoryInput } from "./CreateCategoryInput";
+import { UseCaseInterface, ValidatorError } from '../../../../shared';
+import { CategoryEntity, CategoryRepositoryInterface } from '../../../domain';
+import { CategoryOutput, CategoryOutputMapper } from '../common';
+import { CreateCategoryInput } from './CreateCategoryInput';
 
 export type CreateCategoryOutput = CategoryOutput;
 
-export class CreateCategoryUseCase implements UseCaseInterface<
-  CreateCategoryInput,
-  CreateCategoryOutput
-> {
+export class CreateCategoryUseCase
+  implements UseCaseInterface<CreateCategoryInput, CreateCategoryOutput>
+{
   private readonly categoryRepository: CategoryRepositoryInterface;
 
   constructor(categoryRepository: CategoryRepositoryInterface) {

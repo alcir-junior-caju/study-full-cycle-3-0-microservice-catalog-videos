@@ -1,12 +1,16 @@
-import { Op } from "sequelize";
-import { UUIDValueObject, NotFoundError } from "../../../../shared";
-import { CategoryEntity } from "../../../domain";
-import { CategoryModel } from "./CategoryModel";
-import { CategoryModelMapper } from "./CategoryModelMapper";
-import { CategoryRepositoryInterface, CategorySearchParams, CategorySearchResult } from "../../../domain/repository";
+import { Op } from 'sequelize';
+import { UUIDValueObject, NotFoundError } from '../../../../shared';
+import { CategoryEntity } from '../../../domain';
+import { CategoryModel } from './CategoryModel';
+import { CategoryModelMapper } from './CategoryModelMapper';
+import {
+  CategoryRepositoryInterface,
+  CategorySearchParams,
+  CategorySearchResult,
+} from '../../../domain/repository';
 
 export class CategoryRepository implements CategoryRepositoryInterface {
-  sortableFields: string[] = ["name", "createdAt"];
+  sortableFields: string[] = ['name', 'createdAt'];
   private model: typeof CategoryModel;
 
   constructor(model: typeof CategoryModel) {
@@ -19,8 +23,10 @@ export class CategoryRepository implements CategoryRepositoryInterface {
   }
 
   async bulkInsert(entities: CategoryEntity[]): Promise<void> {
-    const models = entities.map(entity => CategoryModelMapper.toModel(entity));
-    await this.model.bulkCreate(models.map(model => model.toJSON()));
+    const models = entities.map((entity) =>
+      CategoryModelMapper.toModel(entity),
+    );
+    await this.model.bulkCreate(models.map((model) => model.toJSON()));
   }
 
   async update(entity: CategoryEntity): Promise<void> {
@@ -28,9 +34,7 @@ export class CategoryRepository implements CategoryRepositoryInterface {
     const data = await this._get(id);
     if (!data) throw new NotFoundError(id, this.getEntity());
     const model = CategoryModelMapper.toModel(entity);
-    await this.model.update(
-      model.toJSON(), { where: { categoryId: id }
-    });
+    await this.model.update(model.toJSON(), { where: { categoryId: id } });
   }
 
   async delete(entityId: UUIDValueObject): Promise<void> {
@@ -46,7 +50,7 @@ export class CategoryRepository implements CategoryRepositoryInterface {
 
   async findAll(): Promise<CategoryEntity[]> {
     const data = await this.model.findAll();
-    return data.map(item => CategoryModelMapper.toEntity(item));
+    return data.map((item) => CategoryModelMapper.toEntity(item));
   }
 
   getEntity(): new (...args: any[]) => CategoryEntity {
@@ -59,22 +63,21 @@ export class CategoryRepository implements CategoryRepositoryInterface {
     const { rows: models, count } = await this.model.findAndCountAll({
       ...(params.filter && {
         where: {
-          name: { [Op.like]: `%${params.filter}%` }
-        }
+          name: { [Op.like]: `%${params.filter}%` },
+        },
       }),
       ...(params.sort && this.sortableFields.includes(params.sort)
         ? { order: [[params.sort, params.sortDirection]] }
-        : { order: [["createdAt", "desc"]] }
-      ),
+        : { order: [['createdAt', 'desc']] }),
       offset,
       limit,
     });
-    const items = models.map(item => CategoryModelMapper.toEntity(item));
+    const items = models.map((item) => CategoryModelMapper.toEntity(item));
     return new CategorySearchResult({
       items,
       currentPage: params.page,
       perPage: params.perPage,
-      total: count
+      total: count,
     });
   }
 

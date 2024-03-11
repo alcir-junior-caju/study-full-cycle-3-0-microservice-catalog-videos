@@ -1,7 +1,11 @@
-import { InvalidUUIDError, NotFoundError, UUIDValueObject } from "../../../shared";
-import { UpdateCategoryUseCase } from "../../application";
-import { CategoryEntity } from "../../domain";
-import { CategoryInMemoryRepository } from "../../infra";
+import {
+  InvalidUUIDError,
+  NotFoundError,
+  UUIDValueObject,
+} from '../../../shared';
+import { UpdateCategoryUseCase } from '../../application';
+import { CategoryEntity } from '../../domain';
+import { CategoryInMemoryRepository } from '../../infra';
 
 describe('UpdateCategoryUseCase Unit Tests', () => {
   let useCase: UpdateCategoryUseCase;
@@ -13,9 +17,13 @@ describe('UpdateCategoryUseCase Unit Tests', () => {
   });
 
   it('should be throws errors when category not found', async () => {
-    await expect(() => useCase.execute({ id: 'invalid-id' })).rejects.toThrow(new InvalidUUIDError());
+    await expect(() => useCase.execute({ id: 'invalid-id' })).rejects.toThrow(
+      new InvalidUUIDError(),
+    );
     const uuid = new UUIDValueObject();
-    await expect(() => useCase.execute({ id: uuid.value })).rejects.toThrow(new NotFoundError(uuid.value, CategoryEntity));
+    await expect(() => useCase.execute({ id: uuid.value })).rejects.toThrow(
+      new NotFoundError(uuid.value, CategoryEntity),
+    );
   });
 
   it('should be update category', async () => {

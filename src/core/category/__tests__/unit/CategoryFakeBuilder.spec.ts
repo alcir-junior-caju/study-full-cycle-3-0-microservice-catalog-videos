@@ -1,6 +1,6 @@
-import { Chance } from "chance";
-import { UUIDValueObject } from "../../../shared";
-import { CategoryFakeBuilder } from "../../domain/faker";
+import { Chance } from 'chance';
+import { UUIDValueObject } from '../../../shared';
+import { CategoryFakeBuilder } from '../../domain/faker';
 
 describe('CategoryFakeBuilder Unit Tests', () => {
   describe('categoryId param', () => {
@@ -8,7 +8,7 @@ describe('CategoryFakeBuilder Unit Tests', () => {
 
     it('should throw error when any with methods has called', () => {
       expect(() => faker.categoryId).toThrow(
-        new Error("Property categoryId not have a factory, use 'with' methods")
+        new Error("Property categoryId not have a factory, use 'with' methods"),
       );
     });
 
@@ -50,7 +50,7 @@ describe('CategoryFakeBuilder Unit Tests', () => {
 
     it('should be a function', () => {
       expect(faker['_name']).toBeInstanceOf(Function);
-    })
+    });
 
     it('should be call the word method', () => {
       const chance = Chance();
@@ -58,7 +58,7 @@ describe('CategoryFakeBuilder Unit Tests', () => {
       faker['chance'] = chance;
       faker.build();
       expect(spyWordMethod).toHaveBeenCalled();
-    })
+    });
 
     it('should be withName', () => {
       const $this = faker.withName('test name');

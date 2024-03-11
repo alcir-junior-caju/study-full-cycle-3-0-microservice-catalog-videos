@@ -1,2 +1,2 @@
-export * from "./inMemory";
-export * from "./sequelize";
+export * from './inMemory';
+export * from './sequelize';

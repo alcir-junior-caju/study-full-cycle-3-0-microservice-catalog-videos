@@ -1,1 +1,1 @@
-export * from './CategoryEntity'
+export * from './CategoryEntity';

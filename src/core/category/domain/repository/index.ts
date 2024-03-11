@@ -1,1 +1,1 @@
-export * from "./CategoryRepositoryInterface";
+export * from './CategoryRepositoryInterface';
