@@ -1,4 +1,4 @@
-import { Entity, UUIDValueObject, ValidatorError } from "../../../shared";
+import { Entity, UUIDValueObject } from "../../../shared";
 import { CategoryFakeBuilder } from "../faker";
 import { CategoryValidatorFactory } from "../validator";
 
@@ -36,39 +36,31 @@ export class CategoryEntity extends Entity {
     return this.categoryId;
   }
 
-  static validate(entity: CategoryEntity) {
-    const validator = CategoryValidatorFactory.create();
-    const isValid =  validator.validate(entity);
-    if (!isValid) {
-      throw new ValidatorError(validator.errors);
-    }
-  }
-
   static create({ name, description, isActive }: CategoryEntityCreateCommand): CategoryEntity {
     const category = new CategoryEntity({
       name,
       description,
       isActive: isActive
     });
-    CategoryEntity.validate(category);
+    category.validate(["name"]);
     return category;
   }
 
   changeName(name: string): void {
     this.name = name;
-    CategoryEntity.validate(this);
+    this.validate(["name"]);
   }
 
   // TODO: remove after challenge
   update({ name, description }: CategoryEntityCreateCommand): void {
     this.name = name;
     this.description = description;
-    CategoryEntity.validate(this);
+    this.validate(["name"]);
   }
 
   changeDescription(description: string): void {
     this.description = description;
-    CategoryEntity.validate(this);
+    this.validate(["name"]);
   }
 
   activate(): void {
@@ -77,6 +69,11 @@ export class CategoryEntity extends Entity {
 
   deactivate(): void {
     this.isActive = false;
+  }
+
+  validate(fields?: string[]) {
+    const validator = CategoryValidatorFactory.create();
+    return validator.validate(this.notification, this, fields);
   }
 
   static fake() {

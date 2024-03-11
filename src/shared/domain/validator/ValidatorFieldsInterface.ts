@@ -1,9 +1,9 @@
-export type FieldErrors = {
-  [field: string]: string[];
-};
+import { NotificationPartner } from "./NotificationPattern";
 
-export interface ValidatorFieldsInterface<ParamsValidated> {
-  errors: FieldErrors | null;
-  validatedData: ParamsValidated | null;
-  validate(data: any): boolean;
+export type FieldErrors = | {
+  [field: string]: string[];
+} | string;
+
+export interface ValidatorFieldsInterface {
+  validate(notification: NotificationPartner, data: any, fields: string[]): boolean;
 }

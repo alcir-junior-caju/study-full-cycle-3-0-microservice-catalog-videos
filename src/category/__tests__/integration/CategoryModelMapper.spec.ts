@@ -11,23 +11,32 @@ describe('CategoryModelMapper Integration Tests', () => {
     repository = new CategoryRepository(CategoryModel);
   });
 
-  it('should be throws error when category is invalid', async () => {
-    const model = CategoryModel.build({
-      categoryId: "9366e3f3-3b3e-4e3e-8e3e-3e3e3e3e3e3e",
-    });
-    try {
-      CategoryModelMapper.toEntity(model);
-      fail("The category is valid, but it needs throws a EntityValidationError");
-    } catch (error) {
-      expect(error).toBeInstanceOf(ValidatorError);
-      expect((error as ValidatorError).error).toMatchObject({
-          name: [
-            "name should not be empty",
-            "name must be a string",
-            "name must be shorter than or equal to 255 characters"
-          ],
+  describe('Category Validator', () => {
+    describe('create command', () => {
+      it('should be an invalid category with name property', () => {
+        const category = CategoryEntity.create({ name: 't'.repeat(256) });
+
+        expect(category.notification.hasErrors()).toBe(true);
+        expect(category.notification).notificationContainsErrorMessages([
+          {
+            name: ['name must be shorter than or equal to 255 characters'],
+          },
+        ]);
       });
-    }
+    });
+
+    describe('changeName method', () => {
+      it('should a invalid category using name property', () => {
+        const category = CategoryEntity.create({ name: 'Movie' });
+        category.changeName('t'.repeat(256));
+        expect(category.notification.hasErrors()).toBe(true);
+        expect(category.notification).notificationContainsErrorMessages([
+          {
+            name: ['name must be shorter than or equal to 255 characters'],
+          },
+        ]);
+      });
+    });
   });
 
   it('should be able to convert a model to entity', async () => {

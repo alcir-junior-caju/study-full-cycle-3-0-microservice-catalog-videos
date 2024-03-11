@@ -1,6 +1,6 @@
-import { NotFoundError, UUIDValueObject, UseCaseInterface } from "../../../shared";
-import { CategoryEntity, CategoryRepositoryInterface } from "../../domain";
-import { CategoryOutput, CategoryOutputMapper } from "./common";
+import { NotFoundError, UUIDValueObject, UseCaseInterface } from "../../../../shared";
+import { CategoryEntity, CategoryRepositoryInterface } from "../../../domain";
+import { CategoryOutput, CategoryOutputMapper } from "../common";
 
 export type GetCategoryInput = {
   id: string;

@@ -1,6 +1,6 @@
-import { PaginationOutput, PaginationOutputMapper, SortDirection, UseCaseInterface } from "../../../shared";
-import { CategoryFilter, CategoryRepositoryInterface, CategorySearchParams, CategorySearchResult } from "../../domain";
-import { CategoryOutput, CategoryOutputMapper } from "./common";
+import { PaginationOutput, PaginationOutputMapper, SortDirection, UseCaseInterface } from "../../../../shared";
+import { CategoryFilter, CategoryRepositoryInterface, CategorySearchParams, CategorySearchResult } from "../../../domain";
+import { CategoryOutput, CategoryOutputMapper } from "../common";
 
 export type ListCategoriesInput = {
   page?: number;

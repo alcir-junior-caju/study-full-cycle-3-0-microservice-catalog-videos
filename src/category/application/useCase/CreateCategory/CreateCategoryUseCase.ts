@@ -1,12 +1,7 @@
-import { UseCaseInterface } from "../../../shared";
-import { CategoryEntity, CategoryRepositoryInterface } from "../../domain";
-import { CategoryOutput, CategoryOutputMapper } from "./common";
-
-export type CreateCategoryInput = {
-  name: string;
-  description?: string | null;
-  isActive?: boolean;
-};
+import { UseCaseInterface, ValidatorError } from "../../../../shared";
+import { CategoryEntity, CategoryRepositoryInterface } from "../../../domain";
+import { CategoryOutput, CategoryOutputMapper } from "../common";
+import { CreateCategoryInput } from "./CreateCategoryInput";
 
 export type CreateCategoryOutput = CategoryOutput;
 
@@ -22,6 +17,9 @@ export class CreateCategoryUseCase implements UseCaseInterface<
 
   async execute(input: CreateCategoryInput): Promise<CreateCategoryOutput> {
     const entity = CategoryEntity.create(input);
+    if (entity.notification.hasErrors()) {
+      throw new ValidatorError(entity.notification.toJSON());
+    }
     await this.categoryRepository.insert(entity);
     return CategoryOutputMapper.toOutput(entity);
   }

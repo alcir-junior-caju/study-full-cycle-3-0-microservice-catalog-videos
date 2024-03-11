@@ -3,7 +3,9 @@ import { FieldErrors } from "../shared";
 declare global {
   namespace jest {
     interface Matchers<R> {
-      containsErrorMessages: (expeted: FieldErrors) => R;
+      notificationContainsErrorMessages: (
+        expected: Array<string | { [key: string]: string[] }>
+      ) => R;
     }
   }
 }

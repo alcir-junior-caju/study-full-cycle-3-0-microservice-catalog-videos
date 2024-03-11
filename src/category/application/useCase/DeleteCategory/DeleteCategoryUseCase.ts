@@ -1,5 +1,5 @@
-import { UUIDValueObject, UseCaseInterface } from "../../../shared";
-import { CategoryRepositoryInterface } from "../../domain";
+import { UUIDValueObject, UseCaseInterface } from "../../../../shared";
+import { CategoryRepositoryInterface } from "../../../domain";
 
 export type DeleteCategoryInput = {
   id: string;

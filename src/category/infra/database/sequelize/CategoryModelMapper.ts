@@ -1,4 +1,4 @@
-import { UUIDValueObject } from "../../../../shared";
+import { UUIDValueObject, ValidatorError } from "../../../../shared";
 import { CategoryEntity } from "../../../domain";
 import { CategoryModel } from "./CategoryModel";
 
@@ -21,7 +21,8 @@ export class CategoryModelMapper {
       isActive: model.isActive,
       createdAt: model.createdAt
     });
-    CategoryEntity.validate(entity);
+    entity.validate();
+    if (entity.notification.hasErrors()) throw new ValidatorError(entity.notification.toJSON());
     return entity;
   }
 }
